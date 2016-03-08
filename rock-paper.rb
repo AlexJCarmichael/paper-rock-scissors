@@ -12,8 +12,24 @@
 # Paper beats Rock
 # Scissors beats Paper
 
+class RoShamBo
+  def initialize (choice)
+    @choice = choice
+    @computer_choice = ["ROCK", "PAPER", "SCISSORS"][(rand(0..2))]
+  end
+  def play_ro_sham
+    puts "Player chose #{@choice}. Computer chose #{@computer_choice}."
+  end
+end
+
 puts "Lets play Paper-Rock-Scissors."
 
-choice = gets.chomp
+choice = gets.chomp.upcase
 
-puts choice
+# unless choice == "ROCK" || "PAPER" || "SCISSORS"
+#   puts "Please make a valid choice of rock, paper, or scissors."
+#   choice = gets.chomp.upcase
+# end
+
+new_game = RoShamBo.new(choice)
+new_game.play_ro_sham
