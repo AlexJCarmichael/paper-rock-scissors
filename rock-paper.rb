@@ -11,6 +11,33 @@
 # Rock beats scissors
 # Paper beats Rock
 # Scissors beats Paper
+def greeter
+  puts "Lets play Paper-Rock-Scissors."
+end
+
+def verify_choice (choice)
+  unless choice == "ROCK" ||
+        choice == "PAPER" ||
+        choice == "SCISSORS"
+    puts "Please make a valid choice of rock, paper, or scissors."
+    choice = gets.chomp.upcase
+  end
+end
+
+def play_again
+  puts "Do you want to play again? (Y/N)"
+  again = gets.chomp.upcase
+  if again == "Y"
+    greeter
+    choice = gets.chomp.upcase
+    verify_choice (choice)
+    new_game = RoShamBo.new(choice)
+    new_game.play_ro_sham
+    play_again
+  else
+    puts "Good-bye"
+  end
+end
 
 class RoShamBo
   def initialize (choice)
@@ -53,18 +80,17 @@ class RoShamBo
       puts "Player: Scissors vs Computer: Scissors ---- Tie."
     end
   end
+  # puts "Do you wish to play again? (Y/N)"
+  # again = gets.chomp.upcase
+  # if again == "Y"
+  #
+  # else
+  #   puts "Good-bye"
 end
 
-puts "Lets play Paper-Rock-Scissors."
-
+greeter
 choice = gets.chomp.upcase
-
-unless choice == "ROCK" ||
-      choice == "PAPER" ||
-      choice == "SCISSORS"
-  puts "Please make a valid choice of rock, paper, or scissors."
-  choice = gets.chomp.upcase
-end
-
+verify_choice (choice)
 new_game = RoShamBo.new(choice)
 new_game.play_ro_sham
+play_again
