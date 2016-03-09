@@ -1,42 +1,36 @@
-# class Game
-#   attr_accessor :player_one_choice, :computer
-# end
-#
-# game = Game.new
-# game.play
-# Normal Mode
-# The game should ask player 1 for their choice of "rock", "paper", or "scissors". (use gets)
-# The game should then randomly select the computer's selection
-# The game then outputs who won in this format: "Player: ROCK vs Computer: SCISSORS ----- PLAYER WINS"
-# Rock beats scissors
-# Paper beats Rock
-# Scissors beats Paper
+
 def greeter
   puts "Lets play Paper-Rock-Scissors."
+  puts "What will you throw?"
 end
 
-def verify_choice (choice)
-  unless choice == "ROCK" ||
-        choice == "PAPER" ||
-        choice == "SCISSORS"
+def verify_choice
+  choice = gets.chomp.upcase
+  while choice != "ROCK" &&
+        choice != "PAPER" &&
+        choice != "SCISSORS"
     puts "Please make a valid choice of rock, paper, or scissors."
     choice = gets.chomp.upcase
   end
+  return choice
 end
 
 def play_again
   puts "Do you want to play again? (Y/N)"
   again = gets.chomp.upcase
   if again == "Y"
-    greeter
-    choice = gets.chomp.upcase
-    verify_choice (choice)
-    new_game = RoShamBo.new(choice)
-    new_game.play_ro_sham
-    play_again
+    start
   else
     puts "Good-bye"
   end
+end
+
+def start
+  greeter
+  choice = verify_choice
+  new_game = RoShamBo.new(choice)
+  new_game.play_ro_sham
+  play_again
 end
 
 class RoShamBo
@@ -80,17 +74,6 @@ class RoShamBo
       puts "Player: Scissors vs Computer: Scissors ---- Tie."
     end
   end
-  # puts "Do you wish to play again? (Y/N)"
-  # again = gets.chomp.upcase
-  # if again == "Y"
-  #
-  # else
-  #   puts "Good-bye"
 end
 
-greeter
-choice = gets.chomp.upcase
-verify_choice (choice)
-new_game = RoShamBo.new(choice)
-new_game.play_ro_sham
-play_again
+start
